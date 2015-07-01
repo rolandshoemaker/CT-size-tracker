@@ -26,10 +26,10 @@ for entry in logs["logs"]:
 	entry_info = json.loads(r.read())
 	print(entry["url"] + " " + str(entry_info["tree_size"]))
 	if not log_sizes["last_sizes"].get(entry["url"], False):
-		log_sizes["last_sizes"][entry["url"]] = entry_info["tree_size"]
 		log_sizes["logs"][entry["url"]] = []
 	else:
 		log_sizes["logs"][entry["url"]].append([now, (entry_info["tree_size"] - log_sizes["last_sizes"][entry["url"]])])
+	log_sizes["last_sizes"][entry["url"]] = entry_info["tree_size"]
 
 print(log_sizes)
 
